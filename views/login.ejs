@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login to Cryptic Pigeon</title>
+<link rel="stylesheet"  href="styles.css"> <!--Link to my CSS file-->
+</head>
+<body>
+
+  <h2><a href="/login">Cryptic Pigeon</a></h2>
+
+<form action="/login" method="POST">
+
+  <!-- The container below will hold labels, buttons, and input fields -->
+  <div class="container">
+    <label for="email"><b>Email</b></label>
+    <input type="email" name="email" id="email" placeholder="Enter Email" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" name="password" id="password" placeholder="Enter Password" required>
+        
+    <button type="submit">Login</button>
+
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+    <span class="psw">Forgot <a href="#">password?</a></span>
+
+    <!-- The button below will execute javascript that will direct the user to a sign up page -->
+    <button type="button" id="signup-button">
+        <a href="/register">Sign Up</a> <!-- Anchor tag placed separately -->
+    </button>
+    
+
+</form>
+
+</body>
+</html>
