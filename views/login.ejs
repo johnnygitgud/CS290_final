@@ -10,6 +10,12 @@
   <h2><a href="/login">Cryptic Pigeon</a></h2>
 
 <form action="/login" method="POST">
+  <!-- The block below is to display an eror message: "Incorect email or password" -->
+  <% if (messages.error) { %>
+    <div class="alert alert-danger">
+        <strong><%= messages.error %></strong>
+    </div>
+  <% } %>
 
   <!-- The container below will hold labels, buttons, and input fields -->
   <div class="container">
@@ -26,11 +32,11 @@
     </label>
     <span class="psw">Forgot <a href="#">password?</a></span>
 
-    <!-- The button below will execute javascript that will direct the user to a sign up page -->
+  
     <button type="button" id="signup-button">
         <a href="/register">Sign Up</a> <!-- Anchor tag placed separately -->
     </button>
-    
+  </div> <!-- Closing div for container -->
 
 </form>
 

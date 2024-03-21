@@ -11,13 +11,13 @@ function initialize(passport, getUserbyEmail, getUserById){
     // Get users by email and check for registered users
         const user = getUserbyEmail(email)
         if (user == null){
-            return done(null, false, {message: "No user found with that email"})
+            return done(null, false, {message: "Incorrect email or password"})
         }
         try {
             if(await bcrypt.compare(password, user.password)) {
                 return done(null, user)
             } else{
-                return done (null, false, {message: "Incorrect Password"})
+                return done (null, false, {message: "Incorrect email or password"})
             }
         } catch (e) {
             console.log(e);                         
