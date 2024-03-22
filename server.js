@@ -1,17 +1,20 @@
-// Load environment variables from .env file in development mode
+//Use npm run devStart to start server. rs to restart and CTRL+C to close.
+// Load environment variables from .env file in development mode by avoiding a "production" environment.
+//This is for testing in a safe environment before releasing to the public
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config()
 }
 
 // Import required libraries and initialize Express application
-const express = require("express")
+const express = require("express")//Express is part of Node JS. It simplifies handling of HTTP requests.
 const app = express()
-const bcrypt = require("bcrypt")
-const passport = require("passport")
-const initializePassport = require("./passport-config")
-const flash = require("express-flash")
-const session = require("express-session")
-const methodOverride = require("method-override")
+const bcrypt = require("bcrypt") //Bcrypt enables password hashing
+const passport = require("passport") // Is litterally a passport for user authentication.
+const initializePassport = require("./passport-config") // Separate passport config file is needed and is imprted to the server.js
+const flash = require("express-flash") //Express Flash is used to display ERROR messages that respond to user requests.
+const session = require("express-session") //Express Session is used to manage user sessions. This enhances security.
+const methodOverride = require("method-override") //Method overide enables PUT/DELETE. Delete is used in the logout route below.
+
 
 // Initialize passport with custom configuration
 initializePassport(
@@ -28,7 +31,7 @@ const users = []
 // Middleware setup
 app.use(express.urlencoded({ extended: false })) // Parse URL-encoded bodies
 app.use(flash()) // Flash messages
-app.use(express.static('public'));
+app.use(express.static('public'));//This was a work around for the background image. When the .ejs was updated to fancier css, the image stopped working. This line was the fix and .css and jpeg are in path directory.
 
 app.use(session({
     secret: process.env.SECRET_KEY, // Secret for session cookie
@@ -65,6 +68,7 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
     }
 })
 
+//Bellow are the paths for displaying each .ejs file that holds the html that the user sees. 
 // Route for rendering the home page
 app.get('/', checkAuthenticated, (req, res) => {
     res.render("index.ejs", { name: req.user.name }) // Render index.ejs with user's name
@@ -87,6 +91,19 @@ app.delete("/logout", (req, res) => {
         res.redirect("/") // Redirect to home page after logout
     })
 })
+
+// Route for handling message submission. NOT FULLY FUNCTIONAL YET. Database to improve this TBD.
+app.post("/send-message", checkAuthenticated, (req, res) => {
+    const { recipientEmail, message } = req.body;
+    // Add message to messages array
+    messages.push({
+        sender: req.user.email,
+        recipient: recipientEmail,
+        message: message
+    });
+    res.redirect("/"); // Redirect to index page after sending message
+})
+
 
 // Middleware function to check if user is authenticated
 function checkAuthenticated(req, res, next) {

@@ -1,2 +1,3 @@
-.env
-node_modules
+# .env
+# node_modules
+# ideally these should be ignored for security but i'm pushing them anyway and will be ignored later with new info

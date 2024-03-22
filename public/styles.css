@@ -4,7 +4,7 @@ body, html {
     padding: 0; /* Remove default padding */
     font-family: "Raleway", sans-serif; /* Apply font-family */
     background-image: url('cyberPigeon.JPG'); /* Specify background image */
-    background-position: left; /* Center the background image horizontally and vertically */
+    background-position: left; /* Place left the background image horizontally and vertically */
     background-size: contain; /* Cover the entire viewport with the background image */
   }
   
