@@ -1,4 +1,4 @@
-//Use npm run devStart to start server. rs to restart and CTRL+C to close.
+//Use npm run devStart to start server. rs to restart and CTRL+C to close..
 // Load environment variables from .env file in development mode by avoiding a "production" environment.
 //This is for testing in a safe environment before releasing to the public
 if (process.env.NODE_ENV !== "production") {
